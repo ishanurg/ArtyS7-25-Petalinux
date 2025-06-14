@@ -305,20 +305,6 @@ text
 
 ---
 
-## Inserting Photographs
-
-You can insert your photographs at any point in this guide.  
-For example, after the JTAG boot section, add:
-
-text
-
-Or, after the Vivado project setup, add:
-
-text
-
----
-
-
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
