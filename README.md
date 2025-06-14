@@ -6,34 +6,35 @@
 
 ## Table of Contents
 
-1. [Introduction](#introduction)
-2. [Project Overview](#project-overview)
-3. [Prerequisites](#prerequisites)
-4. [Project Structure](#project-structure)
-5. [Getting Started](#getting-started)
-6. [Vivado Project Setup](#vivado-project-setup)
-   - [Downloading and Using the .tcl Script](#downloading-and-using-the-tcl-script)
-   - [Generating the Bitstream](#generating-the-bitstream)
-   - [Exporting Hardware for Petalinux](#exporting-hardware-for-petalinux)
-7. [Petalinux Project Setup](#petalinux-project-setup)
-   - [Configuring the Project with Exported Hardware](#configuring-the-project-with-exported-hardware)
-   - [Device Tree Customization](#device-tree-customization)
-   - [Building the Petalinux System](#building-the-petalinux-system)
-8. [JTAG Boot: No SD Card, No Flash](#jtag-boot-no-sd-card-no-flash)
-   - [Setting Up JTAG Boot Mode](#setting-up-jtag-boot-mode)
-   - [Booting with JTAG](#booting-with-jtag)
-9. [Monitoring the Console](#monitoring-the-console)
-10. [Troubleshooting](#troubleshooting)
-11. [Project Commands Cheatsheet](#project-commands-cheatsheet)
-12. [Inserting Photographs](#inserting-photographs)
-13. [FAQs](#faqs)
-14. [License](#license)
-15. [Acknowledgments](#acknowledgments)
-16. [Contact](#contact)
+- [Introduction](#introduction)
+- [Project Overview](#project-overview)
+- [Prerequisites](#prerequisites)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Vivado Project Setup](#vivado-project-setup)
+  - [Downloading and Using the .tcl Script](#downloading-and-using-the-tcl-script)
+  - [Generating the Bitstream](#generating-the-bitstream)
+  - [Exporting Hardware for Petalinux](#exporting-hardware-for-petalinux)
+- [Petalinux Project Setup](#petalinux-project-setup)
+  - [Configuring the Project with Exported Hardware](#configuring-the-project-with-exported-hardware)
+  - [Device Tree Customization](#device-tree-customization)
+  - [Building the Petalinux System](#building-the-petalinux-system)
+- [JTAG Boot: No SD Card, No Flash](#jtag-boot-no-sd-card-no-flash)
+  - [Setting Up JTAG Boot Mode](#setting-up-jtag-boot-mode)
+  - [Booting with JTAG](#booting-with-jtag)
+- [Monitoring the Console](#monitoring-the-console)
+- [Troubleshooting](#troubleshooting)
+- [Project Commands Cheatsheet](#project-commands-cheatsheet)
+- [Inserting Photographs](#inserting-photographs)
+- [FAQs](#faqs)
+- [Advanced: TFTP Boot (Optional)](#advanced-tftp-boot-optional)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+- [Contact](#contact)
 
 ---
 
-## 1. Introduction
+## Introduction
 
 Welcome to the **ArtyS7-25-Petalinux** project!  
 This guide is designed for users who want to build and boot a custom Linux system on the Digilent Arty S7-25 board **using only JTAG**.  
@@ -41,7 +42,7 @@ No SD card, no QSPI flash—just connect your board to your host computer via JT
 
 ---
 
-## 2. Project Overview
+## Project Overview
 
 - **Target Board:** Digilent Arty S7-25
 - **Tools:** Vivado 2024.2, Petalinux 2024.2
@@ -50,7 +51,7 @@ No SD card, no QSPI flash—just connect your board to your host computer via JT
 
 ---
 
-## 3. Prerequisites
+## Prerequisites
 
 - **Vivado 2024.2** (or newer) installed
 - **Petalinux 2024.2** (or newer) installed
@@ -62,7 +63,7 @@ No SD card, no QSPI flash—just connect your board to your host computer via JT
 
 ---
 
-## 4. Project Structure
+## Project Structure
 
 s7-linux/
 ├── .gitignore
@@ -85,9 +86,9 @@ text
 
 ---
 
-## 5. Getting Started
+## Getting Started
 
-### 5.1. Clone the Repository
+### Clone the Repository
 
 git clone https://github.com/ishanurg/ArtyS7-25-Petalinux.git
 cd ArtyS7-25-Petalinux
@@ -96,7 +97,7 @@ text
 
 ---
 
-### 5.2. Install Dependencies
+### Install Dependencies
 
 On Ubuntu, install the following packages:
 
@@ -107,7 +108,7 @@ text
 
 ---
 
-### 5.3. Set Up Vivado and Petalinux Environment
+### Set Up Vivado and Petalinux Environment
 
 Source the Vivado and Petalinux environment scripts in your terminal:
 
@@ -120,9 +121,9 @@ text
 
 ---
 
-## 6. Vivado Project Setup
+## Vivado Project Setup
 
-### 6.1. Downloading and Using the .tcl Script
+### Downloading and Using the .tcl Script
 
 You can use the provided `.tcl` script to recreate the Vivado project on any machine.  
 **Download or clone the repository to get the script:**
@@ -142,7 +143,7 @@ This will create the Vivado project in your current directory.
 
 ---
 
-### 6.2. Opening the Project in Vivado
+### Opening the Project in Vivado
 
 vivado s7-linux.xpr
 
@@ -150,7 +151,7 @@ text
 
 ---
 
-### 6.3. Exploring the Project Structure
+### Exploring the Project Structure
 
 - **HDL sources:** `src/design/`
 - **Block designs:** `src/bd/`
@@ -159,7 +160,7 @@ text
 
 ---
 
-### 6.4. Modifying the Project
+### Modifying the Project
 
 - **Add or edit HDL sources** in `src/design/`
 - **Add or edit block designs** in `src/bd/`
@@ -168,13 +169,13 @@ text
 
 ---
 
-### 6.5. Generating the Bitstream
+### Generating the Bitstream
 
 In Vivado, click **Generate Bitstream** to synthesize and implement your design.
 
 ---
 
-### 6.6. Exporting Hardware for Petalinux
+### Exporting Hardware for Petalinux
 
 After generating the bitstream, export the hardware for Petalinux:
 
@@ -184,9 +185,9 @@ After generating the bitstream, export the hardware for Petalinux:
 
 ---
 
-## 7. Petalinux Project Setup
+## Petalinux Project Setup
 
-### 7.1. Navigate to the Petalinux Project
+### Navigate to the Petalinux Project
 
 cd arty
 
@@ -194,7 +195,7 @@ text
 
 ---
 
-### 7.2. Configure the Project with Exported Hardware
+### Configure the Project with Exported Hardware
 
 petalinux-config --get-hw-description=../hardware
 
@@ -202,7 +203,7 @@ text
 
 ---
 
-### 7.3. Device Tree Customization
+### Device Tree Customization
 
 To ensure the Linux kernel loads properly, customize the device tree by editing:
 
@@ -234,7 +235,7 @@ text
 
 ---
 
-### 7.4. Building the Petalinux System
+### Building the Petalinux System
 
 petalinux-build
 
@@ -244,9 +245,9 @@ text
 
 ---
 
-## 8. JTAG Boot: No SD Card, No Flash
+## JTAG Boot: No SD Card, No Flash
 
-### 8.1. Setting Up JTAG Boot Mode
+### Setting Up JTAG Boot Mode
 
 - **Power off the board.**
 - **Connect the JTAG port on the board to your host computer using the JTAG cable.**
@@ -256,7 +257,7 @@ text
 
 ---
 
-### 8.2. Booting with JTAG
+### Booting with JTAG
 
 Use the following command to boot the system directly via JTAG:
 
@@ -275,7 +276,7 @@ This will download the bitstream, U-Boot, kernel, and root filesystem directly t
 
 ---
 
-## 9. Monitoring the Console
+## Monitoring the Console
 
 Open a terminal emulator to monitor the console output:
 
@@ -287,7 +288,7 @@ text
 
 ---
 
-## 10. Troubleshooting
+## Troubleshooting
 
 - **JTAG not detected:**  
   - Ensure the JTAG cable is properly connected.
@@ -303,7 +304,7 @@ text
 
 ---
 
-## 11. Project Commands Cheatsheet
+## Project Commands Cheatsheet
 
 | Command | Description |
 |---------|-------------|
@@ -318,7 +319,7 @@ text
 
 ---
 
-## 12. Inserting Photographs
+## Inserting Photographs
 
 You can insert your photographs at any point in this guide.  
 For example, after the JTAG boot section, add:
@@ -331,7 +332,7 @@ text
 
 ---
 
-## 13. FAQs
+## FAQs
 
 **Q: Can I boot without an SD card or flash?**  
 A: Yes, you can boot directly via JTAG using the `petalinux-boot --jtag` command.
@@ -345,7 +346,7 @@ A: Use TFTP boot to load the root filesystem over the network.
 
 ---
 
-## 14. Advanced: TFTP Boot (Optional)
+## Advanced: TFTP Boot (Optional)
 
 If you want to load the kernel, rootfs, and device tree via TFTP (useful for large images or development), you can use U-Boot commands:
 
@@ -367,13 +368,13 @@ text
 
 ---
 
-## 15. License
+## License
 
 This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-## 16. Acknowledgments
+## Acknowledgments
 
 - **Digilent** for the Arty S7-25 board
 - **Xilinx/AMD** for Vivado and Petalinux
@@ -381,7 +382,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-## 17. Contact
+## Contact
 
 For questions or feedback, open an issue on GitHub or contact the maintainer.
 
@@ -391,3 +392,4 @@ For questions or feedback, open an issue on GitHub or contact the maintainer.
 Happy hacking!
 
 ---
+
