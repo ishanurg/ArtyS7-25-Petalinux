@@ -1,0 +1,11 @@
+/include/ "system-conf.dtsi"
+/ {
+    timer@41c00000 {
+        compatible = "xlnx,xps-timer-1.00.a";
+        reg = <0x41c00000 0x10000>;
+        interrupt-parent = <&microblaze_0_axi_intc>;
+        interrupts = <1 2>;
+        clock-frequency = <100000000>;
+    };
+};
+

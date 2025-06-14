@@ -1,0 +1,34 @@
+# Vivado project directories and files
+s7-linux*
+!s7-linux.tcl
+*.cache/
+*.runs/
+*.sim/
+*.hw/
+*.ip_user_files/
+*.srcs/
+*.gen/
+*.jou
+*.log
+*.str
+*.xpr
+
+# Petalinux build directories and files (inside arty/)
+arty/build/
+arty/components/plnx_workspace/
+arty/components/yocto/
+arty/images/linux/
+arty/pre-built/linux/
+arty/.petalinux/*
+!arty/.petalinux/metadata
+arty/project-spec/meta-plnx-generated/
+arty/*/*/config.old
+arty/*/*/rootfs_config.old
+arty/*.o
+arty/*.log
+arty/*.jou
+
+# Other artifacts
+*.bit
+*.bin
+*.xsa  # If you want to track the XSA file, remove this line (see note below)

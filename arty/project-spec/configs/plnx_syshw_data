@@ -1,0 +1,39 @@
+device_id: 7s25
+hw_design_name: design_1_wrapper
+processor:
+    microblaze_0:
+        arch: microblaze
+        ip_name: microblaze
+        slaves_strings: axi_timer_0 axi_uartlite_0 microblaze_0_axi_intc microblaze_0_local_memory_dlmb_bram_if_cntlr microblaze_0_local_memory_ilmb_bram_if_cntlr mig_7series_0
+        instance_path: design_1_i/microblaze_0
+        linux_kernel_properties:
+            XILINX_MICROBLAZE0_FAMILY: spartan7 string
+            XILINX_MICROBLAZE0_USE_MSR_INSTR: 1 int
+            XILINX_MICROBLAZE0_USE_PCMP_INSTR: 1 int
+            XILINX_MICROBLAZE0_USE_BARREL: 1 int
+            XILINX_MICROBLAZE0_USE_DIV: 1 int
+            XILINX_MICROBLAZE0_USE_HW_MUL: 2 int
+            XILINX_MICROBLAZE0_USE_FPU: 0 int
+            XILINX_MICROBLAZE0_ENDIANNESS: 1 int
+            XILINX_MICROBLAZE0_DATASIZE: 32 int
+            XILINX_MICROBLAZE0_USE_REORDER_INSTR: 1 int
+            XILINX_MICROBLAZE0_AREA_OPTIMIZED: 0 int
+            XILINX_MICROBLAZE0_HW_VER: 11.0 string
+        slaves:
+            mig_7series_0:
+                device_type: memory
+                ip_name: mig_7series
+                baseaddr: 0x80000000
+                highaddr: 0x8FFFFFFF
+            axi_uartlite_0:
+                device_type: serial
+                ip_name: axi_uartlite
+                is_pl: 1
+            axi_timer_0:
+                ip_name: axi_timer
+            microblaze_0_axi_intc:
+                ip_name: axi_intc
+            microblaze_0_local_memory_dlmb_bram_if_cntlr:
+                ip_name: lmb_bram_if_cntlr
+            microblaze_0_local_memory_ilmb_bram_if_cntlr:
+                ip_name: lmb_bram_if_cntlr
