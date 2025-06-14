@@ -273,6 +273,7 @@ text
 *(Replace `/dev/ttyUSB0` with your actual UART device.)*
 U-Boot
 ![Screenshot from 2025-06-15 00-06-06](https://github.com/user-attachments/assets/71d0859c-7fad-4443-b68b-709eb73d0de6)
+
 Linux-Booting
 ![Screenshot from 2025-06-15 00-15-44](https://github.com/user-attachments/assets/bb1bdce0-215e-44cc-be23-b381238ea0ec)
 ![Screenshot from 2025-06-15 00-17-52](https://github.com/user-attachments/assets/3dcdc6c9-529b-4cd3-9aa8-6756b899b458)
