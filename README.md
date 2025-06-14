@@ -1,4 +1,4 @@
-# ArtyS7-25-Petalinux: JTAG-Only Boot with Vivado & Petalinux
+# ArtyS7-25-Petalinux
 
 **A comprehensive, step-by-step guide to building and booting a custom Linux system on the Digilent Arty S7-25 board using only JTAG—no SD card or flash storage required.**
 
