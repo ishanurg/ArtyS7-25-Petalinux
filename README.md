@@ -264,7 +264,8 @@ screen /dev/ttyUSB0 115200
 *(Replace `/dev/ttyUSB0` with your actual UART device.)*
 
 ## U-Boot
-![Screenshot from 2025-06-15 00-06-06](https://github.com/user-attachments/assets/71d0859c-7fad-4443-b68b-709eb73d0de6)
+![WhatsApp Image 2025-06-15 at 01 08 12](https://github.com/user-attachments/assets/4aeebc7b-5f28-4b2a-a6b1-637365f534ec)
+
 
 ## Linux-Booting
 ![Screenshot from 2025-06-15 00-15-44](https://github.com/user-attachments/assets/bb1bdce0-215e-44cc-be23-b381238ea0ec)
