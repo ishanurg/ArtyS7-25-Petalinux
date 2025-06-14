@@ -26,7 +26,7 @@
 - [Project Commands Cheatsheet](#project-commands-cheatsheet)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
-- [Contact](#contact)
+
 
 ---
 
