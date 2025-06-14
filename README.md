@@ -62,29 +62,6 @@ No SD card, no QSPI flash—just connect your board to your host computer via JT
 
 ---
 
-## Project Structure
-
-s7-linux/
-├── .gitignore
-├── README.md
-├── src/
-│ ├── design/ # HDL sources (VHDL, Verilog, SV)
-│ ├── bd/ # Block design files (.bd)
-│ ├── ip/ # IP core files (.xci, .xcix)
-│ └── testbench/ # Testbenches
-├── constraints/
-│ └── *.xdc # Constraint files
-├── hardware/
-│ └── design_1_wrapper.xsa # Exported hardware for Petalinux
-├── scripts/
-│ └── s7-linux.tcl # Vivado project recreation script
-├── arty/ # Petalinux project
-└── LICENSE
-
-text
-
----
-
 ## Getting Started
 
 ### Clone the Repository
