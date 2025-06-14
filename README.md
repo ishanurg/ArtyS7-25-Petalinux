@@ -66,7 +66,7 @@ No SD card, no QSPI flash—just connect your board to your host computer via JT
 git clone https://github.com/ishanurg/ArtyS7-25-Petalinux.git
 cd ArtyS7-25-Petalinux
 
-text
+
 
 ---
 
@@ -77,7 +77,7 @@ On Ubuntu, install the following packages:
 sudo apt update
 sudo apt install -y build-essential git python3 python3-pip device-tree-compiler
 
-text
+
 
 ---
 
@@ -88,7 +88,7 @@ Source the Vivado and Petalinux environment scripts in your terminal:
 source /tools/Xilinx/Vivado/2024.2/settings64.sh
 source /tools/Xilinx/Petalinux/2024.2/settings.sh
 
-text
+
 
 *(Adjust paths according to your installation.)*
 
@@ -104,13 +104,13 @@ You can use the provided `.tcl` script to recreate the Vivado project on any mac
 git clone https://github.com/ishanurg/ArtyS7-25-Petalinux.git
 cd ArtyS7-25-Petalinux
 
-text
+
 
 **To generate the Vivado project, run:**
 
 vivado -mode batch -source scripts/s7-linux.tcl
 
-text
+
 
 This will create the Vivado project in your current directory.
 
@@ -120,7 +120,7 @@ This will create the Vivado project in your current directory.
 
 vivado s7-linux.xpr
 
-text
+
 ![Screenshot from 2025-06-14 22-24-13](https://github.com/user-attachments/assets/54cd9ab1-dec2-4652-8b6f-84afd28282bf)
 
 
@@ -170,7 +170,7 @@ cd <project-name>
 
 cd arty
 
-text
+
 
 ---
 
@@ -179,7 +179,7 @@ text
 petalinux-config --get-hw-description=(XSA-file)
 (No changes just save and exit)
 
-text
+
 
 ---
 
@@ -192,7 +192,7 @@ To ensure the Linux kernel loads properly, customize the device tree by editing:
 
 arty/project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi
 
-text
+
 
 **Example:**  
 Add the following to `system-user.dtsi` to include a timer:
@@ -208,23 +208,19 @@ clock-frequency = <100000000>;
 };
 };
 
-text
+
 
 After editing, rebuild the device tree:
 
 petalinux-build -c device-tree
 
-text
+
 
 ---
 
 ### Building the Petalinux System
 
 petalinux-build
-
-text
-
-*(Optional: Package prebuilt images with `petalinux-package --prebuilt`.)*
 
 ---
 
@@ -246,7 +242,6 @@ Use the following command to boot the system directly via JTAG:
 
 petalinux-boot --jtag --fpga --u-boot --kernel --rootfs
 
-text
 
 **Explanation:**
 - `--jtag`: Boot via JTAG
@@ -265,7 +260,6 @@ Open a terminal emulator to monitor the console output:
 
 screen /dev/ttyUSB0 115200
 
-text
 
 *(Replace `/dev/ttyUSB0` with your actual UART device.)*
 
