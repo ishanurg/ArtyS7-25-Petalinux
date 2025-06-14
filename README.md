@@ -1,6 +1,5 @@
 # ArtyS7-25-Petalinux
-
-**A comprehensive, step-by-step guide to building and booting a custom Linux system on the Digilent Arty S7-25 board using only JTAG—no SD card or flash storage required.**
+**A comprehensive, step-by-step guide to building and booting a custom Linux system on the Digilent Arty S7-25 board using only JTAG**
 
 ---
 
@@ -56,10 +55,10 @@ No SD card, no QSPI flash—just connect your board to your host computer via JT
 - **Vivado 2024.2** (or newer) installed
 - **Petalinux 2024.2** (or newer) installed
 - **Digilent Arty S7-25 board**
-- **Linux host machine** (Ubuntu 20.04/22.04 recommended)
+- **Linux host machine** (Ubuntu 22.04 recommended)
 - **JTAG programmer** (e.g., Digilent USB-JTAG cable)
 - **USB cable** for UART communication
-- **Terminal emulator** (e.g., `screen`, `minicom`)
+- **Terminal emulator** (e.g., `putty`, `minicom`)
 
 ---
 
@@ -148,6 +147,8 @@ This will create the Vivado project in your current directory.
 vivado s7-linux.xpr
 
 text
+![Screenshot from 2025-06-14 22-24-13](https://github.com/user-attachments/assets/54cd9ab1-dec2-4652-8b6f-84afd28282bf)
+
 
 ---
 
@@ -186,6 +187,10 @@ After generating the bitstream, export the hardware for Petalinux:
 ---
 
 ## Petalinux Project Setup
+To create the project - 
+
+petalinux-create --type project --template microblaze --name <project-name>
+cd <project-name>
 
 ### Navigate to the Petalinux Project
 
@@ -197,13 +202,17 @@ text
 
 ### Configure the Project with Exported Hardware
 
-petalinux-config --get-hw-description=../hardware
+petalinux-config --get-hw-description=(XSA-file)
+(No changes just save and exit)
 
 text
 
 ---
 
 ### Device Tree Customization
+You can see the error so accordingly go to address editor of Vivado of AXI Timer and accordingly see that you might see the errors 
+![Screenshot from 2025-06-14 03-01-27](https://github.com/user-attachments/assets/32be6699-6ccb-4d08-ba3b-40a4b859813c)
+
 
 To ensure the Linux kernel loads properly, customize the device tree by editing:
 
@@ -245,7 +254,7 @@ text
 
 ---
 
-## JTAG Boot: No SD Card, No Flash
+## JTAG Boot:
 
 ### Setting Up JTAG Boot Mode
 
@@ -332,41 +341,6 @@ text
 
 ---
 
-## FAQs
-
-**Q: Can I boot without an SD card or flash?**  
-A: Yes, you can boot directly via JTAG using the `petalinux-boot --jtag` command.
-
-**Q: How do I monitor the console output?**  
-A: Use `screen /dev/ttyUSB0 115200` or a similar terminal emulator.
-
-**Q: What if the root filesystem is too large for JTAG?**  
-A: Use TFTP boot to load the root filesystem over the network.  
-*(See [Advanced: TFTP Boot](#advanced-tftp-boot-optional) below.)*
-
----
-
-## Advanced: TFTP Boot (Optional)
-
-If you want to load the kernel, rootfs, and device tree via TFTP (useful for large images or development), you can use U-Boot commands:
-
-1. **Set up a TFTP server on your host.**
-2. **Copy the following files to your TFTP directory:**
-   - `image.ub` (kernel)
-   - `rootfs.cpio.gz` (root filesystem)
-   - `system.dtb` (device tree)
-3. **In U-Boot, use the following commands:**
-
-tftpboot 0x1000000 /tftpboot/image.ub
-tftpboot 0x2000000 /tftpboot/rootfs.cpio.gz
-tftpboot 0x3000000 /tftpboot/system.dtb
-bootm 0x1000000 0x2000000 0x3000000
-
-text
-
-*(Adjust addresses as needed for your system.)*
-
----
 
 ## License
 
@@ -380,11 +354,6 @@ This project is licensed under the [MIT License](LICENSE).
 - **Xilinx/AMD** for Vivado and Petalinux
 - **The open source community** for support and inspiration
 
----
-
-## Contact
-
-For questions or feedback, open an issue on GitHub or contact the maintainer.
 
 ---
 
