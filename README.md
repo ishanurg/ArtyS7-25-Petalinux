@@ -162,6 +162,7 @@ After generating the bitstream, export the hardware for Petalinux:
 To create the project - 
 
 petalinux-create --type project --template microblaze --name <project-name>
+
 cd <project-name>
 
 ### Navigate to the Petalinux Project
