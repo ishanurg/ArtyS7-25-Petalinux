@@ -301,6 +301,7 @@ screen /dev/ttyUSB0 115200
 | `petalinux-build -c device-tree` | Build device tree |
 | `petalinux-build` | Build the Petalinux project |
 | `petalinux-boot --jtag --fpga --u-boot --kernel --rootfs` | Boot via JTAG (no SD card, no flash) |
+| `petalinux-boot --jtag --kernel --fpga` |
 | `screen /dev/ttyUSB0 115200` | Monitor the console |
 
 ---
